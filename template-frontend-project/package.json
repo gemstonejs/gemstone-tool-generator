@@ -1,22 +1,25 @@
 {
-    "name":           "{{name}}",
-    "version":        "{{version}}",
-    "homepage":       "{{homepage}}",
-    "description":    "{{description}}",
-    "keywords":       [ {% for kw in keywords %}"{{ kw }}", {% endfor %} ],
-    "license":        "{{license}}",
+    "name":           "{{ name }}",
+    "version":        "{{ version }}",
+    "homepage":       "{{ homepage }}",
+    "description":    "{{ description }}",
+    "keywords":       [ "{{ keywords | join("\", \"") }}" ],
+    "license":        "{{ license }}",
     "author": {
-        "name":       "{{author-name}}",
-        "url":        "{{author-url}}"
+        "name":       "{{ authorName }}",
+        "url":        "{{ authorUrl }}"
     },
     "scripts": {
-        "prepublish": "bower install",
-        "build":      "gemstone build",
-        "generate":   "gemstone generate"
+{% if bower %}        "bower":      "bower",
+        "install":    "bower install",
+{% endif %}        "gemstone":   "gemstone",
+        "build":      "gemstone frontend-build env=development watch=true beep=true",
+        "build:dev":  "gemstone frontend-build env=development",
+        "build:prod": "gemstone frontend-build env=production"
     },
     "devDependencies": {
-        "bower":                         "*",
-        "gemstone-tool":                 "*",
+{% if bower %}        "bower":                         "*",
+{% endif %}        "gemstone-tool":                 "*",
         "gemstone-tool-generator":       "*",
         "gemstone-tool-frontend":        "*",
         "gemstone-framework-frontend":   "*"

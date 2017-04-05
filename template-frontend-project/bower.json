@@ -1,4 +1,5 @@
-{
+{% if bower %}{
+    "name": "{{ name }}",
     "dependencies": {
     }
-}
+}{% endif %}

@@ -1,0 +1,15 @@
+##
+##  {{ name }} -- {{ description }}
+##  Copyright {{ creation_date | date("YYYY") }} (c) {{ authorName }} <{{ authorUrl }}>
+##  Licensed under {{ license }} <https://spdx.org/licenses/{{ license }}>
+##
+
+en:
+    input:    Input
+    output:   Output
+    shutdown: Shutdown
+de:
+    input:    Eingabe
+    output:   Ausgabe
+    shutdown: Herunterfahren
+

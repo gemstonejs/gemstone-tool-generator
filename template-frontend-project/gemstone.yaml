@@ -1,12 +1,17 @@
+##
+##  gemstone.yaml -- Gemstone Project Configuration
+##
 
 header: |
-    {{name}} ~ {{description}}
+    {{ name }} ~ {{ description }}
+    Copyright {{ creation_date | date("YYYY") }} (c) {{ authorName }} <{{ authorUrl }}>
+    Licensed under {{ license }} <https://spdx.org/licenses/{{ license }}>
 
 meta:
-    title:       {{name}}
-    description: "{{description}}
-    author:      "{{author.name}}
-    keywords:    "{% for kw in keywords %}{{ kw }}{% endfor %}"
+    title:       "{{ name }}"
+    description: "{{ description }}"
+    author:      "{{ authorName }}"
+    keywords:    "{{ keywords | join(", ") }}"
 
 path:
     output:      ./dst
