@@ -1,0 +1,44 @@
+{
+    "name":        "gemstone-tool-generator",
+    "homepage":    "https://github.com/gemstonejs/gemstone-tool-generator",
+    "description": "Gemstone Tool plugin for Generator Tools of Gemstone JavaScript Technology Stack",
+    "version":     "0.9.0",
+    "license":     "Apache-2.0",
+    "author": {
+        "name":    "Gemstone Project",
+        "url":     "http://gemstonejs.com"
+    },
+    "keywords": [
+        "gemstone", "tool", "plugin", "generator",
+        "gemstone-tool-plugin"
+    ],
+    "repository": {
+        "type": "git",
+        "url":  "https://github.com/gemstonejs/gemstone-tool-generator.git"
+    },
+    "bugs": {
+        "url":  "http://github.com/gemstonejs/gemstone-tool-generator/issues"
+    },
+    "devDependencies": {
+        "eslint":                           "~3.19.0",
+        "eslint-config-standard":           "~10.0.0",
+        "eslint-plugin-standard":           "~2.2.0",
+        "eslint-plugin-promise":            "~3.5.0",
+        "eslint-plugin-import":             "~2.2.0",
+        "eslint-plugin-node":               "~4.2.2",
+        "babel-eslint":                     "~7.2.1"
+    },
+    "dependencies": {
+        "fs-promise":                       "~2.0.2",
+        "chalk":                            "~1.1.3",
+        "glob-promise":                     "~3.1.0",
+        "gemstone-config":                  "~0.9.0"
+    },
+    "peerDependencies": {
+        "gemstone-tool":                    "~0.9.0"
+    },
+    "scripts": {
+        "prepublish": "eslint --config eslint.yaml gemstone-tool-generator.js"
+    },
+    "main": "gemstone-tool-generator.js"
+}

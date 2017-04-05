@@ -1,0 +1,16 @@
+
+header: |
+    {{name}} ~ {{description}}
+
+meta:
+    title:       {{name}}
+    description: "{{description}}
+    author:      "{{author.name}}
+    keywords:    "{% for kw in keywords %}{{ kw }}{% endfor %}"
+
+path:
+    output:      ./dst
+    source:      ./src
+    main:        ./src/app.js
+    icon:        ./src/app.png
+

@@ -1,0 +1,26 @@
+{
+    "name":           "{{name}}",
+    "version":        "{{version}}",
+    "homepage":       "{{homepage}}",
+    "description":    "{{description}}",
+    "keywords":       [ {% for kw in keywords %}"{{ kw }}", {% endfor %} ],
+    "license":        "{{license}}",
+    "author": {
+        "name":       "{{author-name}}",
+        "url":        "{{author-url}}"
+    },
+    "scripts": {
+        "prepublish": "bower install",
+        "build":      "gemstone build",
+        "generate":   "gemstone generate"
+    },
+    "devDependencies": {
+        "bower":                         "*",
+        "gemstone-tool":                 "*",
+        "gemstone-tool-generator":       "*",
+        "gemstone-tool-frontend":        "*",
+        "gemstone-framework-frontend":   "*"
+    },
+    "dependencies": {
+    }
+}
