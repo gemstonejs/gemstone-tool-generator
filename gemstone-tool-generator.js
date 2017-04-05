@@ -75,7 +75,7 @@ const generate = async (id, opts, args) => {
             if (!opts.force && await fs.exists(dst))
                 throw new Error(`file ${dst} already exists`)
             let dir = path.dirname(dst)
-            if (! await fs.exists(dir))
+            if (!(await fs.exists(dir)))
                 await mkdirp(dir)
             await fs.writeFile(dst, content, "utf8")
         }
