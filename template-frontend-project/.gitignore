@@ -1,2 +1,2 @@
-node_modules
-bower_components
+node_modules{% if bower %}
+bower_components{% endif %}
