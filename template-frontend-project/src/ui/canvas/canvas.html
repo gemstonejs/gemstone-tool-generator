@@ -1,0 +1,22 @@
+<!--
+    {{ name }} ~ {{ description }}
+    Copyright {{ creation_date | date("YYYY") }} (c) {{ authorName }} ({{ authorUrl }})
+    Licensed under {{ license }} (https://spdx.org/licenses/{{ license }})
+-->
+
+<div scope="canvas">
+    <div class="input">{{ '{{ $t("input") }}' }}: <input type="text" v-model="dataInput"/></div>
+    <div class="output">{{ '{{ $t("output") }}' }}: {{ '{{ dataOutput }}' }}</div>
+    <button class="shutdown" v-on:click="eventShutdown">{{ '{{ $t("shutdown") }}' }}</button>
+    <table class="params">
+        <tr><td>config-env:       </td><td>{{ '{{ gsConfig.env }}' }}</td></tr>
+        <tr><td>config-tag:       </td><td>{{ '{{ gsConfig.tag }}' }}</td></tr>
+        <tr><td>config-hash:      </td><td>{{ '{{ gsConfig.hash }}' }}</td></tr>
+        <tr><td>config-time:      </td><td>{{ '{{ gsConfig.time }}' }}</td></tr>
+        <tr><td>stage-orientation:</td><td>{{ '{{ gsStage.orientation }}' }}</td></tr>
+        <tr><td>stage-size:       </td><td>{{ '{{ gsStage.size }}' }}</td></tr>
+        <tr><td>lang:             </td><td>{{ '{{ gsLang }}' }}</td></tr>
+        <tr><td>theme:            </td><td>{{ '{{ gsTheme }}' }}</td></tr>
+    </table>
+</div>
+
