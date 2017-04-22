@@ -103,6 +103,10 @@ module.exports = function () {
                 desc: "Force generation of files (overwrites existing ones)" },
             {   name: "dir", type: "string", def: "",
                 desc: "The target directory" },
+            {   name: "dirFrontend", type: "string", def: "",
+                desc: "The directory of the frontend project" },
+            {   name: "dirBackend", type: "string", def: "",
+                desc: "The directory of the backend project" },
             {   name: "name", type: "string", def: "example",
                 desc: "The project name" },
             {   name: "version", type: "string", def: "0.9.0",
@@ -125,6 +129,12 @@ module.exports = function () {
         func: async function (opts, ...args) {
             if (opts.dir === "")
                 opts.dir = opts.name
+            if (opts.dirFrontend === "")
+                opts.dirFrontend = `${opts.dir}-fe`
+            if (opts.dirBackend === "")
+                opts.dirBackend = `${opts.dir}-be`
+            opts.dirFrontendRelative = path.relative(opts.dir, opts.dirFrontend)
+            opts.dirBackendRelative  = path.relative(opts.dir, opts.dirBackend)
             return generate("meta-project", opts, args)
         }
     })
@@ -162,7 +172,7 @@ module.exports = function () {
         ],
         func: async function (opts, ...args) {
             if (opts.dir === "")
-                opts.dir = opts.name
+                opts.dir = `${opts.name}-fe`
             return generate("frontend-project", opts, args)
         }
     })
@@ -248,7 +258,7 @@ module.exports = function () {
         ],
         func: async function (opts, ...args) {
             if (opts.dir === "")
-                opts.dir = opts.name
+                opts.dir = `${opts.name}-be`
             return generate("backend-project", opts, args)
         }
     })

@@ -15,36 +15,36 @@
         "shelljs":         ">=0.7.7"
     },
     "config": {
-        "dir-ui":          "../{{name}}-ui",
-        "dir-sv":          "../{{name}}-sv"
+        "dir-fe":          "{{ dirFrontendRelative }}",
+        "dir-be":          "{{ dirBackendRelative }}"
     },
     "scripts": {
-        "install":         "stmux -w error -e ERROR -m beep -- [ \"npm run install:ui\" .. \"npm run install:sv\" ]",
-        "install:bare":    "npm-run-all -s install:ui install:sv",
-        "install:ui":      "cd $npm_package_config_dir_ui && npm install",
-        "install:sv":      "cd $npm_package_config_dir_sv && npm install",
+        "install":         "stmux -w error -e ERROR -m beep -- [ \"npm run install:fe\" .. \"npm run install:be\" ]",
+        "install:bare":    "npm-run-all -s install:fe install:be",
+        "install:fe":      "cd $npm_package_config_dir_fe && npm install",
+        "install:be":      "cd $npm_package_config_dir_be && npm install",
 
-        "build":           "stmux -w error -e ERROR -m beep -- [ \"npm run build:ui\" .. \"npm run build:sv\" ]",
-        "build:bare":      "npm-run-all -s build:ui build:sv",
-        "build:ui":        "cd $npm_package_config_dir_ui && npm run build",
-        "build:sv":        "cd $npm_package_config_dir_sv && npm run build",
+        "build":           "stmux -w error -e ERROR -m beep -- [ \"npm run build:fe\" .. \"npm run build:be\" ]",
+        "build:bare":      "npm-run-all -s build:fe build:be",
+        "build:fe":        "cd $npm_package_config_dir_fe && npm run build",
+        "build:be":        "cd $npm_package_config_dir_be && npm run build",
 
-        "start":           "cd $npm_package_config_dir_sv && npm start",
+        "start":           "cd $npm_package_config_dir_be && npm start",
 
-        "clean":           "stmux -w error -e ERROR -m beep -- [ \"npm run clean:ui\" .. \"npm run clean:sv\" ]",
-        "clean:bare":      "npm-run-all -s clean:ui clean:sv",
-        "clean:ui":        "cd $npm_package_config_dir_ui && npm run clean",
-        "clean:sv":        "cd $npm_package_config_dir_sv && npm run clean",
+        "clean":           "stmux -w error -e ERROR -m beep -- [ \"npm run clean:fe\" .. \"npm run clean:be\" ]",
+        "clean:bare":      "npm-run-all -s clean:fe clean:be",
+        "clean:fe":        "cd $npm_package_config_dir_fe && npm run clean",
+        "clean:be":        "cd $npm_package_config_dir_be && npm run clean",
 
-        "distclean":       "stmux -w error -e ERROR -m beep -- [ [ \"npm run distclean:ui\" .. \"npm run distclean:sv\" ] : \"npm run distclean:local\" ]",
-        "distclean:bare":  "npm-run-all -s distclean:ui distclean:sv",
-        "distclean:ui":    "cd $npm_package_config_dir_ui && npm run distclean",
-        "distclean:sv":    "cd $npm_package_config_dir_sv && npm run distclean",
+        "distclean":       "stmux -w error -e ERROR -m beep -- [ [ \"npm run distclean:fe\" .. \"npm run distclean:be\" ] : \"npm run distclean:local\" ]",
+        "distclean:bare":  "npm-run-all -s distclean:fe distclean:be",
+        "distclean:fe":    "cd $npm_package_config_dir_fe && npm run distclean",
+        "distclean:be":    "cd $npm_package_config_dir_be && npm run distclean",
         "distclean:local": "shx rm -rf node_modules",
 
-        "dev":             "stmux -w always -e ERROR -m system -- [ [ \"npm run dev:ui\" .. \"npm run dev:sv\" ] : -s 1/3 -f \"npm start\" ]",
-        "dev:bare":        "npm-run-all -s dev:ui dev:sv start",
-        "dev:ui":          "cd $npm_package_config_dir_ui && npm run dev",
-        "dev:sv":          "cd $npm_package_config_dir_sv && npm run dev"
+        "dev":             "stmux -w always -e ERROR -m system -- [ [ \"npm run dev:fe\" .. \"npm run dev:be\" ] : -s 1/3 -f \"npm start\" ]",
+        "dev:bare":        "npm-run-all -s dev:fe dev:be start",
+        "dev:fe":          "cd $npm_package_config_dir_fe && npm run dev",
+        "dev:be":          "cd $npm_package_config_dir_be && npm run dev"
     }
 }
