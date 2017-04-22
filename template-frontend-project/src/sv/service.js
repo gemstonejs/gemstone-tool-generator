@@ -1,5 +1,5 @@
 /*
-**  {{ name }} -- {{ description }}
+**  {{ name }} ~ {{ description }}
 **  Copyright {{ creation_date | date("YYYY") }} (c) {{ authorName }} <{{ authorUrl }}>
 **  Licensed under {{ license }} <https://spdx.org/licenses/{{ license }}>
 */
