@@ -1,8 +1,5 @@
 /*
-**  {{ name }} -- {{ description }}
-**  Copyright {{ creation_date | date("YYYY") }} (c) {{ authorName }} <{{ authorUrl }}>
-**  Licensed under {{ license }} <https://spdx.org/licenses/{{ license }}>
-*/
+{{ header | replace(r/^  /mg, "**") }}*/
 
 import { mvc } from "gemstone"
 import View    from "./example.view.js"

@@ -19,3 +19,11 @@ path:
     main:        ./src/app.js
     icon:        ./src/app.png
 
+generator:
+    mask:        ui/<ctx>/<name>/<name>.html
+    style:       ui/<ctx>/<name>/<name>.css
+    i18n:        ui/<ctx>/<name>/<name>.yaml
+    view:        ui/<ctx>/<name>/<name>.js
+    model:       ui/<ctx>/<name>/<name>.js
+    ctrl:        ui/<ctx>/<name>/<name>.js
+
