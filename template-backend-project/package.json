@@ -1,0 +1,28 @@
+{
+    "name":           "{{ name }}-be",
+    "version":        "{{ version }}",
+    "homepage":       "{{ homepage }}",
+    "description":    "{{ description }} (Backend)",
+    "keywords":       [ "{{ keywords | join("\", \"") }}" ],
+    "license":        "{{ license }}",
+    "author": {
+        "name":       "{{ authorName }}",
+        "url":        "{{ authorUrl }}"
+    },
+    "scripts": {
+        "gemstone":   "gemstone",
+        "build:prod": "gemstone backend-build env=production",
+        "build:dev":  "gemstone backend-build env=development",
+        "dev":        "npm run build:dev watch=true beep=true",
+        "clean":      "shx rm -rf dst",
+        "distclean":  "shx rm -rf node_modules"
+    },
+    "devDependencies": {
+        "gemstone-tool":                 "*",
+        "gemstone-tool-generator":       "*",
+        "gemstone-tool-backend":         "*",
+        "gemstone-framework-backend":    "*"
+    },
+    "dependencies": {
+    }
+}
