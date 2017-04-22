@@ -166,12 +166,12 @@ module.exports = function () {
             return generate("frontend-project", opts, args)
         }
     })
-    const frontend_src2dst = (src, cfg, opts) => {
+    const src2dst = (src, cfg, opts) => {
         let tupled = (
                cfg.generator.view  === cfg.generator.model
             && cfg.generator.model === cfg.generator.ctrl
         )
-        let [ , type, ext ] = src.match(/^example\.(mask|style|i18n|view|model|ctrl|tuple)\.([^.]+)$/)
+        let [ , type ] = src.match(/^example\.(mask|style|i18n|view|model|ctrl|tuple)\.[^.]+$/)
         if (   ( tupled && type.match(/^(?:view|model|ctrl)$/))
             || (!tupled && type === "tuple"                   ))
             return ""
@@ -203,7 +203,7 @@ module.exports = function () {
         func: async function (opts, ...args) {
             if (opts.dir === "")
                 opts.dir = "."
-            return generate("frontend-composite", opts, args, frontend_src2dst)
+            return generate("frontend-composite", opts, args, src2dst)
         }
     })
     this.register({
@@ -227,7 +227,7 @@ module.exports = function () {
         func: async function (opts, ...args) {
             if (opts.dir === "")
                 opts.dir = "."
-            return generate("frontend-widget", opts, args, frontend_src2dst)
+            return generate("frontend-widget", opts, args, src2dst)
         }
     })
     this.register({
