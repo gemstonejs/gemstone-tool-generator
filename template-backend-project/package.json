@@ -11,9 +11,10 @@
     },
     "scripts": {
         "gemstone":   "gemstone",
+        "build":      "gemstone backend-build",
         "build:prod": "gemstone backend-build env=production",
-        "build:dev":  "gemstone backend-build env=development",
-        "dev":        "npm run build:dev watch=true beep=true",
+        "start":      "true",
+        "dev":        "npm run build watch=true beep=true",
         "clean":      "shx rm -rf dst",
         "distclean":  "shx rm -rf node_modules"
     },
