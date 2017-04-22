@@ -9,7 +9,7 @@ header: |
 
 meta:
     title:       "{{ name }}"
-    description: "{{ description }}"
+    description: "{{ description }} (Frontend)"
     author:      "{{ authorName }}"
     keywords:    "{{ keywords | join(", ") }}"
 

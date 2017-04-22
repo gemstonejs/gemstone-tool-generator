@@ -1,8 +1,8 @@
 {
-    "name":           "{{ name }} (Frontend)",
+    "name":           "{{ name }}",
     "version":        "{{ version }}",
     "homepage":       "{{ homepage }}",
-    "description":    "{{ description }}",
+    "description":    "{{ description }} (Frontend)",
     "keywords":       [ "{{ keywords | join("\", \"") }}" ],
     "license":        "{{ license }}",
     "author": {
