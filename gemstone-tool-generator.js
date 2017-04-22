@@ -41,7 +41,7 @@ const generate = async (id, opts, args, src2dst) => {
         throw new Error(`no such template directory for id ${id}`)
 
     /*  determine expansion variables  */
-    let data = Object.assign({}, opts)
+    let data = Object.assign({}, cfg, opts)
 
     /*  iterate over all template paths  */
     let files = await glob(path.join(basedir, "**", "*"))
@@ -50,8 +50,16 @@ const generate = async (id, opts, args, src2dst) => {
         if (!(await fs.stat(src)).isFile())
             return
 
+        /*  optionally transform source path  */
+        let srcrel = path.relative(basedir, src)
+        if (typeof src2dst === "function") {
+            srcrel = src2dst(srcrel, cfg, opts)
+            if (srcrel === "")
+                return
+        }
+
         /*  determine destination directory  */
-        let dst = path.join(opts.dir, path.relative(basedir, src))
+        let dst = path.join(opts.dir, srcrel)
 
         /*  generate content  */
         if (src.match(/\.(?:gif|png|jpg)$/)) {
@@ -84,6 +92,42 @@ const generate = async (id, opts, args, src2dst) => {
 
 /*  export the Gemstone Tool plugin API  */
 module.exports = function () {
+    this.register({
+        name: "generate-meta-project",
+        alias: [ "gen-me-prj", "gmp" ],
+        desc: "Generate Gemstone Meta Project Artifacts",
+        opts: [
+            {   name: "verbose", type: "boolean", def: false,
+                desc: "Enable verbose output mode" },
+            {   name: "force", type: "boolean", def: false,
+                desc: "Force generation of files (overwrites existing ones)" },
+            {   name: "dir", type: "string", def: "",
+                desc: "The target directory" },
+            {   name: "name", type: "string", def: "example",
+                desc: "The project name" },
+            {   name: "version", type: "string", def: "0.9.0",
+                desc: "The project version" },
+            {   name: "homepage", type: "string", def: "http://example.com/",
+                desc: "The project homepage URL" },
+            {   name: "description", type: "string", def: "Example Meta Project",
+                desc: "The project description" },
+            {   name: "keywords", type: "[string*]", def: [ "example", "meta" ],
+                desc: "The project keywords" },
+            {   name: "license", type: "string", def: "Apache-2.0",
+                desc: "The project license (by SPDX id)" },
+            {   name: "authorName", type: "string", def: "John Doe",
+                desc: "The project author name" },
+            {   name: "authorUrl", type: "string", def: "mailto:john.doe@example.com",
+                desc: "The project author URL" }
+        ],
+        args: [
+        ],
+        func: async function (opts, ...args) {
+            if (opts.dir === "")
+                opts.dir = opts.name
+            return generate("meta-project", opts, args)
+        }
+    })
     this.register({
         name: "generate-frontend-project",
         alias: [ "gen-fe-prj", "gfp" ],
@@ -122,28 +166,33 @@ module.exports = function () {
             return generate("frontend-project", opts, args)
         }
     })
-    const src2dst = (src, opts) => {
+    const frontend_src2dst = (src, cfg, opts) => {
         let tupled = (
                cfg.generator.view  === cfg.generator.model
             && cfg.generator.model === cfg.generator.ctrl
         )
-        let [ , type, ext ] = src.match(/^example\.(?:mask|style|i18n|view|model|ctrl|tuple)\.([^.]+)$/)
+        let [ , type, ext ] = src.match(/^example\.(mask|style|i18n|view|model|ctrl|tuple)\.([^.]+)$/)
         if (   ( tupled && type.match(/^(?:view|model|ctrl)$/))
             || (!tupled && type === "tuple"                   ))
             return ""
         if (tupled && type === "tuple")
             type = "view"
-        let dst = generator[type]
+        let dst = cfg.generator[type]
         dst = dst.replace(/<ctx>/g, opts.ctx).replace(/<name>/g, opts.name)
         dst = dst.replace(/\/\//g, "/").replace(/\/\//g, "/")
         return dst
     }
     this.register({
         name: "generate-frontend-composite",
+        alias: [ "gen-fe-comp", "gfc" ],
         desc: "Generate Gemstone Frontend Composite Artifacts",
         opts: [
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
+            {   name: "force", type: "boolean", def: false,
+                desc: "Force generation of files (overwrites existing ones)" },
+            {   name: "dir", type: "string", def: "",
+                desc: "The target directory" },
             {   name: "name", type: "string", def: "example",
                 desc: "The composite name" },
             {   name: "ctx", type: "string", def: "",
@@ -152,51 +201,76 @@ module.exports = function () {
         args: [
         ],
         func: async function (opts, ...args) {
-            return generate("frontend-composite", opts, args, src2dst)
+            if (opts.dir === "")
+                opts.dir = "."
+            return generate("frontend-composite", opts, args, frontend_src2dst)
         }
     })
     this.register({
         name: "generate-frontend-widget",
+        alias: [ "gen-fe-wid", "gfw" ],
         desc: "Generate Gemstone Frontend Widget Artifacts",
         opts: [
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
+            {   name: "force", type: "boolean", def: false,
+                desc: "Force generation of files (overwrites existing ones)" },
+            {   name: "dir", type: "string", def: "",
+                desc: "The target directory" },
             {   name: "name", type: "string", def: "example",
-                desc: "The widget name" }
+                desc: "The widget name" },
+            {   name: "ctx", type: "string", def: "",
+                desc: "The context path" }
         ],
         args: [
         ],
         func: async function (opts, ...args) {
-            return generate("frontend-widget", opts, args, src2dst)
+            if (opts.dir === "")
+                opts.dir = "."
+            return generate("frontend-widget", opts, args, frontend_src2dst)
         }
     })
     this.register({
         name: "generate-backend-project",
+        alias: [ "gen-be-prj", "gbp" ],
         desc: "Generate Gemstone Backend Project Artifacts",
         opts: [
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
+            {   name: "force", type: "boolean", def: false,
+                desc: "Force generation of files (overwrites existing ones)" },
+            {   name: "dir", type: "string", def: "",
+                desc: "The target directory" },
             {   name: "name", type: "string", def: "",
                 desc: "The project name" }
         ],
         args: [
         ],
         func: async function (opts, ...args) {
+            if (opts.dir === "")
+                opts.dir = opts.name
             return generate("backend-project", opts, args)
         }
     })
     this.register({
         name: "generate-backend-module",
+        alias: [ "gen-be-mod", "gbm" ],
         desc: "Generate Gemstone Backend Module Artifacts",
         opts: [
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
+            {   name: "force", type: "boolean", def: false,
+                desc: "Force generation of files (overwrites existing ones)" },
+            {   name: "dir", type: "string", def: "",
+                desc: "The target directory" },
             {   name: "name", type: "string", def: "",
                 desc: "The module name" }
         ],
         args: [
         ],
         func: async function (opts, ...args) {
+            if (opts.dir === "")
+                opts.dir = "."
             return generate("backend-module", opts, args)
         }
     })
