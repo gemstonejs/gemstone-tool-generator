@@ -15,8 +15,7 @@ const mkdirp              = require("mkdirp-promise")
 const chalk               = require("chalk")
 const Nunjucks            = require("nunjucks")
 const NunjucksDateFilter  = require("nunjucks-date-filter")
-// const gemstoneConfig      = require("gemstone-config")
-// const pkg                 = require("./package.json")
+const gemstoneConfig      = require("gemstone-config")
 
 /*  Nujucks configuration  */
 const nunjucksEnv = Nunjucks.configure(".", {
@@ -32,7 +31,10 @@ const nunjucksEnv = Nunjucks.configure(".", {
 })
 nunjucksEnv.addFilter("date", NunjucksDateFilter)
 
-const generate = async (id, opts, args) => {
+const generate = async (id, opts, args, src2dst) => {
+    /*  determine Gemstone configuration  */
+    let cfg = gemstoneConfig()
+
     /*  determine base directory of template artifacts  */
     let basedir = path.resolve(path.join(__dirname, `template-${id}`))
     if (!(await fs.exists(basedir)))
@@ -47,9 +49,6 @@ const generate = async (id, opts, args) => {
         /*  skip non-files (like directories)  */
         if (!(await fs.stat(src)).isFile())
             return
-
-        /*  expand variable in filename  */
-        src = src.replace(/\[name\]/g, opts.name)
 
         /*  determine destination directory  */
         let dst = path.join(opts.dir, path.relative(basedir, src))
@@ -87,13 +86,14 @@ const generate = async (id, opts, args) => {
 module.exports = function () {
     this.register({
         name: "generate-frontend-project",
+        alias: [ "gen-fe-prj", "gfp" ],
         desc: "Generate Gemstone Frontend Project Artifacts",
         opts: [
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
             {   name: "force", type: "boolean", def: false,
                 desc: "Force generation of files (overwrites existing ones)" },
-            {   name: "dir", type: "string", def: ".",
+            {   name: "dir", type: "string", def: "",
                 desc: "The target directory" },
             {   name: "bower", type: "boolean", def: false,
                 desc: "Whether to use Bower in addition to NPM" },
@@ -117,9 +117,27 @@ module.exports = function () {
         args: [
         ],
         func: async function (opts, ...args) {
+            if (opts.dir === "")
+                opts.dir = opts.name
             return generate("frontend-project", opts, args)
         }
     })
+    const src2dst = (src, opts) => {
+        let tupled = (
+               cfg.generator.view  === cfg.generator.model
+            && cfg.generator.model === cfg.generator.ctrl
+        )
+        let [ , type, ext ] = src.match(/^example\.(?:mask|style|i18n|view|model|ctrl|tuple)\.([^.]+)$/)
+        if (   ( tupled && type.match(/^(?:view|model|ctrl)$/))
+            || (!tupled && type === "tuple"                   ))
+            return ""
+        if (tupled && type === "tuple")
+            type = "view"
+        let dst = generator[type]
+        dst = dst.replace(/<ctx>/g, opts.ctx).replace(/<name>/g, opts.name)
+        dst = dst.replace(/\/\//g, "/").replace(/\/\//g, "/")
+        return dst
+    }
     this.register({
         name: "generate-frontend-composite",
         desc: "Generate Gemstone Frontend Composite Artifacts",
@@ -127,12 +145,14 @@ module.exports = function () {
             {   name: "verbose", type: "boolean", def: false,
                 desc: "Enable verbose output mode" },
             {   name: "name", type: "string", def: "example",
-                desc: "The composite name" }
+                desc: "The composite name" },
+            {   name: "ctx", type: "string", def: "",
+                desc: "The context path" }
         ],
         args: [
         ],
         func: async function (opts, ...args) {
-            return generate("frontend-composite", opts, args)
+            return generate("frontend-composite", opts, args, src2dst)
         }
     })
     this.register({
@@ -147,7 +167,7 @@ module.exports = function () {
         args: [
         ],
         func: async function (opts, ...args) {
-            return generate("frontend-widget", opts, args)
+            return generate("frontend-widget", opts, args, src2dst)
         }
     })
     this.register({
