@@ -5,7 +5,7 @@
 */
 
 import gs       from "gemstone"
-import Canvas   from "./ui/canvas/canvas"
+import Canvas   from "./ui/canvas"
 import Service  from "./sv/service"
 
 gs.boot({
