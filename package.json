@@ -37,10 +37,13 @@
         "nunjucks":                         "~3.0.0",
         "nunjucks-date-filter":             "~0.1.1",
         "bluebird":                         "~3.5.0",
-        "gemstone-config":                  "~0.9.6"
+        "gemstone-config":                  "~0.9.8"
     },
     "peerDependencies": {
         "gemstone-tool":                    "~0.9.9"
+    },
+    "engines": {
+        "node":                             ">=7.6.0"
     },
     "scripts": {
         "prepublish": "eslint --config eslint.yaml gemstone-tool-generator.js"
