@@ -21,8 +21,13 @@
         <tr><td><i class="fa fa-calendar"></i></td><td>config-time:      </td><td>{{ '{{ gsConfig.time }}' }}</td></tr>
         <tr><td><i class="fa fa-compass"></i> </td><td>stage-orientation:</td><td>{{ '{{ gsStage.orientation }}' }}</td></tr>
         <tr><td><i class="fa fa-expand"></i>  </td><td>stage-size:       </td><td>{{ '{{ gsStage.size }}' }}</td></tr>
-        <tr><td><i class="fa fa-language"></i></td><td>lang:             </td><td>{{ '{{ gsLang }}' }}</td></tr>
         <tr><td><i class="fa fa-eye"></i>     </td><td>theme:            </td><td>{{ '{{ gsTheme }}' }}</td></tr>
+        <tr><td><i class="fa fa-language"></i></td><td>lang:             </td><td>
+            <select v-model="gsLang">
+                <option value="en">en: English</option>
+                <option value="de">de: German</option>
+            </select>
+        </td></tr>
     </table>
     <button class="btn btn-default shutdown" v-on:click="eventShutdown">
         {{ '{{ $t("shutdown") }}' }}
