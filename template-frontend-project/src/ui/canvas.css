@@ -5,15 +5,20 @@
 */
 
 @scope canvas {
-    .input {
-        color: "#336699";
-    }
-    .output {
-        color: "#336699";
-    }
-    .shutdown {
-        background-color: "#cc3333";
-        color: "#ffffff";
+    .canvas {
+        margin: 20px;
+        padding: 20px;
+        background-color: #f0f0f0;
+        .input {
+            color: "#336699";
+        }
+        .output {
+            color: "#336699";
+        }
+        .params {
+            border-spacing:  4px;
+            border-collapse: separate;
+        }
     }
 }
 
