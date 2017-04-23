@@ -21,11 +21,11 @@
         "distclean":  "shx rm -rf node_modules"
     },
     "devDependencies": {
-{% if bower %}        "bower":                         "*",
-{% endif %}        "gemstone-tool":                 "*",
-        "gemstone-tool-generator":       "*",
-        "gemstone-tool-frontend":        "*",
-        "gemstone-framework-frontend":   "*"
+{% if bower %}        "bower":                         "latest",
+{% endif %}        "gemstone-tool":                 "latest",
+        "gemstone-tool-generator":       "latest",
+        "gemstone-tool-frontend":        "latest",
+        "gemstone-framework-frontend":   "latest"
     },
     "dependencies": {
     }

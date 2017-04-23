@@ -10,9 +10,9 @@
         "url":             "{{ authorUrl }}"
     },
     "devDependencies": {
-        "stmux":           ">=1.4.0",
-        "npm-run-all":     ">=4.0.2",
-        "shelljs":         ">=0.7.7"
+        "stmux":           "latest",
+        "npm-run-all":     "latest",
+        "shelljs":         "latest"
     },
     "config": {
         "dir-fe":          "{{ dirFrontendRelative }}",
