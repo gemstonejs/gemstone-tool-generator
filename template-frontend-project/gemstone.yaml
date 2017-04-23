@@ -20,10 +20,10 @@ path:
     icon:        ./src/app.png
 
 generator:
-    mask:        ui/<ctx>/<name>/<name>.html
-    style:       ui/<ctx>/<name>/<name>.css
-    i18n:        ui/<ctx>/<name>/<name>.yaml
-    view:        ui/<ctx>/<name>/<name>.js
-    model:       ui/<ctx>/<name>/<name>.js
-    ctrl:        ui/<ctx>/<name>/<name>.js
+    mask:        ui/<ctx>/<name>.html
+    style:       ui/<ctx>/<name>.css
+    i18n:        ui/<ctx>/<name>.yaml
+    view:        ui/<ctx>/<name>.js
+    model:       ui/<ctx>/<name>.js
+    ctrl:        ui/<ctx>/<name>.js
 

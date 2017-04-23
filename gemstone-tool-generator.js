@@ -190,6 +190,7 @@ module.exports = function () {
         let dst = cfg.generator[type]
         dst = dst.replace(/<ctx>/g, opts.ctx).replace(/<name>/g, opts.name)
         dst = dst.replace(/\/\//g, "/").replace(/\/\//g, "/")
+        dst = path.join(cfg.path.source, dst)
         return dst
     }
     this.register({
