@@ -5,11 +5,11 @@
 ##
 
 en:
-    input:    Input
-    output:   Output
-    shutdown: Shutdown
+    input:    Your Input
+    output:   Our Output
+    shutdown: Shutdown User Interface
 de:
-    input:    Eingabe
-    output:   Ausgabe
-    shutdown: Herunterfahren
+    input:    Ihre Eingabe
+    output:   Unsere Ausgabe
+    shutdown: Benutzeroberfläche Herunterfahren
 
