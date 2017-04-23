@@ -5,8 +5,15 @@
 -->
 
 <div class="canvas" scope="canvas">
-    <span class="input">{{ '{{ $t("input") }}' }}: <input type="text" v-model="dataInput"/></span> &rarr;
-    <span class="output">{{ '{{ $t("output") }}' }}: {{ '{{ dataOutput }}' }}</span>
+    <img class="logo" src="../app.svg" alt="Gemstone Logo"/>
+    <form class="form-inline">
+        <span class="input">{{ '{{ $t("input") }}' }}:
+            <input type="text" class="form-control" v-model="dataInput"/>
+        </span> &rarr;
+        <span class="output">{{ '{{ $t("output") }}' }}:
+            {{ '{{ dataOutput }}' }}
+        </span>
+    </form>
     <table class="params">
         <tr><td><i class="fa fa-home"></i>    </td><td>config-env:       </td><td>{{ '{{ gsConfig.env }}' }}</td></tr>
         <tr><td><i class="fa fa-tags"></i>    </td><td>config-tag:       </td><td>{{ '{{ gsConfig.tag || "(none)" }}' }}</td></tr>
@@ -17,6 +24,8 @@
         <tr><td><i class="fa fa-language"></i></td><td>lang:             </td><td>{{ '{{ gsLang }}' }}</td></tr>
         <tr><td><i class="fa fa-eye"></i>     </td><td>theme:            </td><td>{{ '{{ gsTheme }}' }}</td></tr>
     </table>
-    <button class="btn-default shutdown" v-on:click="eventShutdown">{{ '{{ $t("shutdown") }}' }}</button>
+    <button class="btn btn-default shutdown" v-on:click="eventShutdown">
+        {{ '{{ $t("shutdown") }}' }}
+    </button>
 </div>
 
