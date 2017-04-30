@@ -16,17 +16,17 @@
         </span>
     </form>
     <table class="params">
-        <tr><td><i class="fa fa-home"></i>    </td><td>config-env:       </td><td>{{ '{{ gsConfig.env }}' }}</td></tr>
-        <tr><td><i class="fa fa-tags"></i>    </td><td>config-tag:       </td><td>{{ '{{ gsConfig.tag || "(none)" }}' }}</td></tr>
-        <tr><td><i class="fa fa-hashtag"></i> </td><td>config-hash:      </td><td>{{ '{{ gsConfig.hash }}' }}</td></tr>
-        <tr><td><i class="fa fa-calendar"></i></td><td>config-time:      </td><td>{{ '{{ gsConfig.time }}' }}</td></tr>
-        <tr><td><i class="fa fa-compass"></i> </td><td>stage-orientation:</td><td>{{ '{{ gsStage.orientation }}' }}</td></tr>
-        <tr><td><i class="fa fa-expand"></i>  </td><td>stage-size:       </td><td>{{ '{{ gsStage.size }}' }}</td></tr>
-        <tr><td><i class="fa fa-eye"></i>     </td><td>theme:            </td><td>{{ '{{ gsTheme }}' }}</td></tr>
+        <tr><td><i class="fa fa-home"></i>    </td><td>config-env:       </td><td><tt>{{ '{{ gsConfig.env }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-tags"></i>    </td><td>config-tag:       </td><td><tt>{{ '{{ gsConfig.tag || "(none)" }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-hashtag"></i> </td><td>config-hash:      </td><td><tt>{{ '{{ gsConfig.hash }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-calendar"></i></td><td>config-time:      </td><td><tt>{{ '{{ gsConfig.time }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-compass"></i> </td><td>stage-orientation:</td><td><tt>{{ '{{ gsStage.orientation }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-expand"></i>  </td><td>stage-size:       </td><td><tt>{{ '{{ gsStage.size }}' }}</tt></td></tr>
+        <tr><td><i class="fa fa-eye"></i>     </td><td>theme:            </td><td><tt>{{ '{{ gsTheme }}' }}</tt></td></tr>
         <tr><td><i class="fa fa-language"></i></td><td>lang:             </td><td>
             <select v-model="gsLang">
-                <option value="en">en: English</option>
-                <option value="de">de: German</option>
+                <option value="en"><tt>en</tt>: English</option>
+                <option value="de"><tt>de</tt>: German</option>
             </select>
         </td></tr>
     </table>

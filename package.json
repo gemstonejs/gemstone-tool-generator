@@ -40,7 +40,7 @@
         "gemstone-config":                  "~0.9.9"
     },
     "peerDependencies": {
-        "gemstone-tool":                    "~0.9.9"
+        "gemstone-tool":                    "~0.9.10"
     },
     "engines": {
         "node":                             ">=7.6.0"
