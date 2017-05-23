@@ -8,7 +8,7 @@
 
 /*  external requirements  */
 const path                = require("path")
-const fs                  = require("fs-promise")
+const fs                  = require("mz/fs")
 const Bluebird            = require("bluebird")
 const glob                = require("glob-promise")
 const mkdirp              = require("mkdirp-promise")
