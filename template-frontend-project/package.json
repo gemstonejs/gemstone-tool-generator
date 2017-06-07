@@ -25,7 +25,8 @@
 {% endif %}        "gemstone-tool":                 "latest",
         "gemstone-tool-generator":       "latest",
         "gemstone-tool-frontend":        "latest",
-        "gemstone-framework-frontend":   "latest"
+        "gemstone-framework-frontend":   "latest",
+        "shx":                           "latest"
     },
     "dependencies": {
         "bootstrap":                     "~3.3.7",
