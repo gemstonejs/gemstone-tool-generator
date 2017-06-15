@@ -19,11 +19,12 @@
         "distclean":  "shx rm -rf node_modules"
     },
     "devDependencies": {
-        "gemstone-tool":                 "*",
-        "gemstone-tool-generator":       "*",
-        "gemstone-tool-backend":         "*",
-        "gemstone-framework-backend":    "*"
+        "gemstone-tool":                 "latest",
+        "gemstone-tool-generator":       "latest",
+        "gemstone-tool-backend":         "latest",
+        "gemstone-framework-backend":    "latest"
     },
     "dependencies": {
+        "shx":                           "latest"
     }
 }
