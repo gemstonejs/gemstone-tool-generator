@@ -12,7 +12,7 @@
     "devDependencies": {
         "stmux":           "latest",
         "npm-run-all":     "latest",
-        "shelljs":         "latest"
+        "shx":             "latest"
     },
     "config": {
         "dir-fe":          "{{ dirFrontendRelative }}",
