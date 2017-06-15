@@ -177,10 +177,9 @@ module.exports = function () {
         }
     })
     const src2dst = (src, cfg, opts) => {
-        let tupled = (
-               cfg.generator.view  === cfg.generator.model
-            && cfg.generator.model === cfg.generator.ctrl
-        )
+        let tupled =
+            (   cfg.generator.view  === cfg.generator.model
+             && cfg.generator.model === cfg.generator.ctrl )
         let [ , type ] = src.match(/^example\.(mask|style|i18n|view|model|ctrl|tuple)\.[^.]+$/)
         if (   ( tupled && type.match(/^(?:view|model|ctrl)$/))
             || (!tupled && type === "tuple"                   ))
