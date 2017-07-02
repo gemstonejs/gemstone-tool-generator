@@ -10,13 +10,15 @@
         "url":        "{{ authorUrl }}"
     },
     "scripts": {
-        "gemstone":   "gemstone",
-        "build":      "gemstone backend-build",
-        "build:prod": "gemstone backend-build env=production",
-        "start":      "true",
-        "dev":        "npm run build watch=true beep=true",
-        "clean":      "shx rm -rf dst",
-        "distclean":  "shx rm -rf node_modules"
+        "gemstone":     "gemstone",
+        "build":        "gemstone backend-build",
+        "build:prod":   "gemstone backend-build env=production",
+        "start":        "nodemon --ext .js --watch . --legacy-watch --ignore node_modules --delay 2 -- src/app.js --options=dev",
+        "daemon-start": "node src/app.js --options=prod --daemon",
+        "daemon-stop":  "node src/app.js --options=prod --daemon-kill",
+        "dev":          "npm run build watch=true beep=true",
+        "clean":        "shx rm -rf dst",
+        "distclean":    "shx rm -rf node_modules"
     },
     "devDependencies": {
         "gemstone-tool":                 "latest",
@@ -26,5 +28,13 @@
         "shx":                           "latest"
     },
     "dependencies": {
+        "nodemon":                       "~1.11.0",
+        "babel-register":                "~6.24.1",
+        "babel-polyfill":                "~6.23.0",
+        "babel-preset-es2015":           "~6.24.1",
+        "babel-preset-es2016":           "~6.24.1",
+        "babel-preset-es2017":           "~6.24.1",
+        "babel-preset-stage-3":          "~6.24.1",
+        "babel-preset-stage-2":          "~6.24.1"
     }
 }
