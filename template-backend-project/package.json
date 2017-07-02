@@ -22,9 +22,9 @@
         "gemstone-tool":                 "latest",
         "gemstone-tool-generator":       "latest",
         "gemstone-tool-backend":         "latest",
-        "gemstone-framework-backend":    "latest"
+        "gemstone-framework-backend":    "latest",
+        "shx":                           "latest"
     },
     "dependencies": {
-        "shx":                           "latest"
     }
 }
