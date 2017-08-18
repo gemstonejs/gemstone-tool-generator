@@ -31,7 +31,7 @@
     },
     "dependencies": {
         "bootstrap":                     "~3.3.7",
-        "typopro-web":                   "~3.7.2",
+        "typopro-web":                   "~3.7.5",
         "font-awesome":                  "~4.7.0"
     }
 }
