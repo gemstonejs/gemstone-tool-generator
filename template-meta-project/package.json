@@ -15,8 +15,8 @@
         "shx":             "latest"
     },
     "config": {
-        "dir-fe":          "{{ dirFrontendRelative }}",
-        "dir-be":          "{{ dirBackendRelative }}"
+        "dir-fe":          "{{ dirFrontendRelative | replace(r/\\\\(.?)/g, "\\\\\\1") }}",
+        "dir-be":          "{{ dirBackendRelative  | replace(r/\\\\(.?)/g, "\\\\\\1") }}"
     },
     "scripts": {
         "install":         "stmux -w error -e ERROR -m beep -- [ \"npm run install:fe\" .. \"npm run install:be\" ]",
