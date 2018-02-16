@@ -20,27 +20,27 @@
         "url":  "http://github.com/gemstonejs/gemstone-tool-generator/issues"
     },
     "devDependencies": {
-        "eslint":                           "~4.14.0",
+        "eslint":                           "~4.17.0",
         "eslint-config-standard":           "~10.2.1",
         "eslint-plugin-standard":           "~3.0.1",
         "eslint-plugin-promise":            "~3.6.0",
         "eslint-plugin-import":             "~2.8.0",
-        "eslint-plugin-node":               "~5.2.1",
-        "babel-eslint":                     "~8.1.2"
+        "eslint-plugin-node":               "~6.0.0",
+        "babel-eslint":                     "~8.2.1"
     },
     "dependencies": {
         "mz":                               "~2.7.0",
         "glob":                             "~7.1.2",
         "glob-promise":                     "~3.3.0",
         "mkdirp-promise":                   "~5.0.1",
-        "chalk":                            "~2.3.0",
+        "chalk":                            "~2.3.1",
         "nunjucks":                         "~3.0.1",
         "nunjucks-date-filter":             "~0.1.1",
         "bluebird":                         "~3.5.1",
-        "gemstone-config":                  "~0.9.25"
+        "gemstone-config":                  "~0.9.29"
     },
     "peerDependencies": {
-        "gemstone-tool":                    "~0.9.26"
+        "gemstone-tool":                    "~0.9.29"
     },
     "engines": {
         "node":                             ">=7.6.0"
