@@ -37,7 +37,7 @@
         "nunjucks":                         "3.2.0",
         "nunjucks-date-filter":             "0.1.1",
         "bluebird":                         "3.7.2",
-        "gemstone-config":                  "0.9.47"
+        "gemstone-config":                  "0.9.48"
     },
     "peerDependencies": {
         "gemstone-tool":                    "0.9.46"
