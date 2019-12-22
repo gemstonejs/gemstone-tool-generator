@@ -33,18 +33,18 @@ nunjucksEnv.addFilter("date", NunjucksDateFilter)
 
 const generate = async (id, opts, args, src2dst) => {
     /*  determine Gemstone configuration  */
-    let cfg = gemstoneConfig()
+    const cfg = gemstoneConfig()
 
     /*  determine base directory of template artifacts  */
-    let basedir = path.resolve(path.join(__dirname, `template-${id}`))
+    const basedir = path.resolve(path.join(__dirname, `template-${id}`))
     if (!(await fs.exists(basedir)))
         throw new Error(`no such template directory for id ${id}`)
 
     /*  determine expansion variables  */
-    let data = Object.assign({}, cfg, opts)
+    const data = Object.assign({}, cfg, opts)
 
     /*  iterate over all template paths  */
-    let files = await glob(path.join(basedir, "**", "*"))
+    const files = await glob(path.join(basedir, "**", "*"))
     await Bluebird.each(files, async (src) => {
         /*  skip non-files (like directories)  */
         if (!(await fs.stat(src)).isFile())
@@ -59,18 +59,18 @@ const generate = async (id, opts, args, src2dst) => {
         }
 
         /*  determine destination directory  */
-        let dst = path.join(opts.dir, srcrel)
+        const dst = path.join(opts.dir, srcrel)
 
         /*  generate content  */
         if (src.match(/\.(?:gif|png|jpg)$/)) {
             process.stdout.write(`++ generating file: [BIN] ${chalk.green(dst)}\n`)
-            let content = await fs.readFile(src, "binary")
+            const content = await fs.readFile(src, "binary")
             await fs.writeFile(dst, content, "binary")
         }
         else {
             /*  expand template via Mozilla Nunjucks template language  */
             let content = await fs.readFile(src, "utf8")
-            let template = Nunjucks.compile(content, nunjucksEnv)
+            const template = Nunjucks.compile(content, nunjucksEnv)
             content = template.render(data)
 
             /*  skip empty contents  */
@@ -81,7 +81,7 @@ const generate = async (id, opts, args, src2dst) => {
             process.stdout.write(`++ generating file: [TXT] ${chalk.green(dst)}\n`)
             if (!opts.force && await fs.exists(dst))
                 throw new Error(`file ${dst} already exists`)
-            let dir = path.dirname(dst)
+            const dir = path.dirname(dst)
             if (!(await fs.exists(dir)))
                 await mkdirp(dir)
             await fs.writeFile(dst, content, "utf8")
@@ -177,7 +177,7 @@ module.exports = function () {
         }
     })
     const src2dst = (src, cfg, opts) => {
-        let tupled =
+        const tupled =
             (   cfg.generator.view  === cfg.generator.model
              && cfg.generator.model === cfg.generator.ctrl )
         let [ , type ] = src.match(/^example\.(mask|style|i18n|view|model|ctrl|tuple)\.[^.]+$/)
